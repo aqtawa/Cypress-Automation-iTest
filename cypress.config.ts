@@ -1,4 +1,4 @@
-export default {
+export default{
   projectId: "ua5oeg", // cypress.cloud
   e2e: {
     setupNodeEvents(on, config) {

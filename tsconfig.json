@@ -42,7 +42,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "cypress/page-objects/ent-locators.js", "cypress/page-objects/ent-locators.js"  ],
   "exclude": [
     "**/node_modules",
     "**/.*/"
