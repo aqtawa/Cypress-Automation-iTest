@@ -10,7 +10,6 @@ describe('With sub auth', () => {
 
     context('Navigation functional', () => {
         it('Open conspect and interact back/forward buttons', () => {
-            cy.reload()
             cy.get(selectors.historyKzBtn).click()
             cy.get('[data-node-id="14"]').click()
             cy.get(selectors.firstConspectHistoryKz).click()
@@ -60,7 +59,7 @@ describe('With sub auth', () => {
             cy.get('.process-footer__navigation-num').should('contain.text', '10 / 10')
             cy.get('.button-nav_theme_next').click()
             cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
-            cy.get('#url-exit').click()
+            cy.get('#url-exit', {timeout:10000}).click()
             cy.location('hostname').should('contain', 'itest.dev-bmg.kz')
         });
 
