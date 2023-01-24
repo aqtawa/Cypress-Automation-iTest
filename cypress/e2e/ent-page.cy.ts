@@ -10,6 +10,7 @@ describe('With sub auth', () => {
 
     context('Navigation functional', () => {
         it('Open conspect and interact back/forward buttons', () => {
+            cy.reload()
             cy.get(selectors.historyKzBtn).click()
             cy.get('[data-node-id="14"]').click()
             cy.get(selectors.firstConspectHistoryKz).click()
@@ -112,9 +113,7 @@ describe('Withot sub auth', () => {
             cy.get('#required-subscribe > .modal-dialog > .modal-content > .modal-footer > .button').click() // "Buy" button in modal
             cy.get('h1').should('contain.text', 'Подписка') // check right location
         });
-        it('', () => {
-            
-        });
+        
         it('User can open conspect but cant open test on theme', () => {
             cy.get(selectors.historyKzBtn).click()
             cy.get('[data-node-id="14"]').click()
