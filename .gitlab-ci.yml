@@ -36,3 +36,4 @@ test:
     # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
     # https://docs.cypress.io/guides/guides/parallelization
     - npx cypress run --record --parallel --browser chrome
+    #
