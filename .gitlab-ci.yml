@@ -24,7 +24,6 @@ test:
   # https://docs.cypress.io/guides/continuous-integration/introduction#Official-Cypress-Docker-Images
   image: cypress/browsers:node18.12.0-chrome107
   stage: test
-  parallel: 2 # Uses 2 parallel instances
   script:    
     # - npm install common-tags    # Starts web server for E2E tests - replace with your own server invocation
     # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
@@ -32,6 +31,6 @@ test:
     # Runs tests in parallel and records to Cypress Cloud
     # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
     # https://docs.cypress.io/guides/guides/parallelization
-    - npm install
-    - npx cypress run --record --parallel --browser chrome
+    - npm ci
+    - npx cypress run --record --browser chrome
     #
