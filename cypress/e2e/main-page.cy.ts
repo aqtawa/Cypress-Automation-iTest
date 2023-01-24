@@ -58,7 +58,6 @@ describe('Navigation menu', () =>{
         cy.get('.test-container__wrapper-hidden').should('be.visible')
         cy.get('.test-container__end').dblclick({force:true})
         cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
-        cy.get('#url-exit').click()
     })
 
     it('Check ENT navigation', () => {
@@ -355,7 +354,7 @@ describe('Main menu', () => {
         cy.get('.footer-top > .footer-inner').should('be.visible')
     });
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    it.only('Footer links', () => {
+    it('Footer links', () => {
         //vk
         cy.get('.social-list__vkontakte > a').should('be.visible')
         cy.get('.footer-bottom > .footer-inner').find('a').eq(0).then((link) =>{
