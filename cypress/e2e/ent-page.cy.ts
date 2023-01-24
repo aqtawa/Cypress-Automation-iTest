@@ -112,8 +112,10 @@ describe('Withot sub auth', () => {
             cy.get('#required-subscribe > .modal-dialog > .modal-content > .modal-footer > .button').click() // "Buy" button in modal
             cy.get('h1').should('contain.text', 'Подписка') // check right location
         });
-
-        it.only('User can open conspect but cant open test on theme', () => {
+        it('', () => {
+            
+        });
+        it('User can open conspect but cant open test on theme', () => {
             cy.get(selectors.historyKzBtn).click()
             cy.get('[data-node-id="14"]').click()
             cy.get(selectors.firstTestHistoryKz).click()
