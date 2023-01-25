@@ -30,5 +30,5 @@ test:
     # Runs tests in parallel and records to Cypress Cloud
     # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
     # https://docs.cypress.io/guides/guides/parallelization
-    - npm ci
+    - npm ci --cache .npm --prefer-offline
     - npx cypress run --record --browser chrome
