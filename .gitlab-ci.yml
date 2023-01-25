@@ -30,6 +30,7 @@ test:
     # Runs tests in parallel and records to Cypress Cloud
     # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
     # https://docs.cypress.io/guides/guides/parallelization
+    - docker run -p 1234:1234 agoldis/sorry-cypress-director
     - npm ci
     - npm install cy2
     - npx cy2 run --record --key XXX --parallel --ci-build-id `date +%s`
