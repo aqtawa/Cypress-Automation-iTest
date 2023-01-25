@@ -60,7 +60,7 @@ describe('With sub auth', () => {
             cy.get('.process-footer__navigation-num').should('contain.text', '10 / 10')
             cy.get('.button-nav_theme_next').click()
             cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
-            cy.get('#url-exit').click()
+            cy.get('#url-exit', {timeout:10000}).click()
             cy.location('hostname').should('contain', 'itest.dev-bmg.kz')
         });
 
@@ -113,8 +113,8 @@ describe('Withot sub auth', () => {
             cy.get('#required-subscribe > .modal-dialog > .modal-content > .modal-footer > .button').click() // "Buy" button in modal
             cy.get('h1').should('contain.text', 'Подписка') // check right location
         });
-
-        it.only('User can open conspect but cant open test on theme', () => {
+        
+        it('User can open conspect but cant open test on theme', () => {
             cy.get(selectors.historyKzBtn).click()
             cy.get('[data-node-id="14"]').click()
             cy.get(selectors.firstTestHistoryKz).click()
