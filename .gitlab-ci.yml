@@ -32,4 +32,3 @@ test:
     # https://docs.cypress.io/guides/guides/parallelization
     - npm ci
     - npx cypress run --record --browser chrome
-    #
