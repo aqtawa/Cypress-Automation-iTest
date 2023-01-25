@@ -1,7 +1,6 @@
 describe('Navigation menu', () =>{
     beforeEach(() => {
         cy.visit('https://itest.dev-bmg.kz/ru')
-        cy.testActiveCheck()
     })
     it('Authorization', () => {
         // click on auth button
@@ -43,12 +42,11 @@ describe('Navigation menu', () =>{
         cy.get('[data-node-alias="chemistry"] > .study-block__title').click()
         cy.get('#full-ent-test > .modal-dialog > .modal-content > .modal-footer > .button').click()
         cy.get('#required-subscribe > .modal-dialog > .modal-content').should('be.visible')
-        cy.wait(3000)
     })
 
     it('PASS FULL ENT button with subscribe', () => {
         cy.auth(1)
-        cy.reload
+        cy.testActiveCheck()
         cy.get('.header-inner > .button').click()
         cy.get('#full-ent-test > .modal-dialog > .modal-content').should('be.visible')
         cy.get('[data-node-alias="biology"] > .study-block__title').click()
