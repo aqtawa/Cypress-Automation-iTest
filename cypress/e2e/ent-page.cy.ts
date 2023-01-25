@@ -5,6 +5,7 @@ describe('With sub auth', () => {
     beforeEach(() => {
         cy.visit('https://itest.dev-bmg.kz/ru')
         cy.auth(1)
+        cy.testActiveCheck()
         cy.visit('https://itest.dev-bmg.kz/ru/ent')
     })
 

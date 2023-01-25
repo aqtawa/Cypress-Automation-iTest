@@ -13,6 +13,7 @@ declare global {
     interface Chainable {
       getByData(value: any): Chainable<JQuery<HTMLElement>>
       auth(value: any): Chainable<JQuery<HTMLElement>>
+      testActiveCheck(): Chainable<JQuery<HTMLElement>>
     }
   }
 }
@@ -49,4 +50,14 @@ Cypress.Commands.add("auth", (i) => {
     // check auth
     cy.get('.login-panel__enter > span').should('not.contain', 'Войти')
   }
+})
+
+Cypress.Commands.add('testActiveCheck', () => {
+  cy.get("body").then($body => {
+    if ($body.find(".test-container").length > 0) {   
+      cy.get('.test-container__end').dblclick({force:true})
+      cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
+      cy.wait(3000)
+    }
+  })
 })

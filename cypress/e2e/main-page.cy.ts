@@ -1,8 +1,7 @@
-import Link from "next/link"
-
 describe('Navigation menu', () =>{
     beforeEach(() => {
         cy.visit('https://itest.dev-bmg.kz/ru')
+        cy.testActiveCheck()
     })
     it('Authorization', () => {
         // click on auth button
