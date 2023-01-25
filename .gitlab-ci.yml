@@ -32,4 +32,4 @@ test:
     # https://docs.cypress.io/guides/guides/parallelization
     - npm ci
     - npm install cy2
-    - npx cy2 run --record --key XXX --ci-build-id `date +%s`
+    - npx cy2 run --record --key XXX --parallel --ci-build-id `date +%s`
