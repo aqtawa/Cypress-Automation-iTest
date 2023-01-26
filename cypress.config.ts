@@ -1,5 +1,5 @@
 export default{
-  projectId: "uxmteq", // cypress.cloud iTest
+  projectId: 'IhRG9B', // cypress sorry
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
