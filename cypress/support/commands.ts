@@ -29,11 +29,11 @@ Cypress.Commands.add("auth", (i) => {
     // click on auth button
     cy.get('.login-panel__enter > i').click()
     // enter the phone as login
-    cy.get('#phone').type('7756456689')
+    cy.get('#login').type('7756456689')
     // enter password
-    cy.get('.password-block > .c-input').type('123456A')
+    cy.get('#password').type('123456A')
     // click login button
-    cy.get('#auth-form > .c-button').click()
+    cy.get('.ol-form-field > .ol-btn').click()
     // check auth
     cy.get('.login-panel__enter > span').should('not.contain', 'Войти')
   }
@@ -42,11 +42,11 @@ Cypress.Commands.add("auth", (i) => {
     // click on auth button
     cy.get('.login-panel__enter > i').click()
     // enter the phone as login
-    cy.get('#phone').type('7073201781')
+    cy.get('#login').type('7073201781')
     // enter password
-    cy.get('.password-block > .c-input').type('123456A')
+    cy.get('#password').type('123456A')
     // click login button
-    cy.get('#auth-form > .c-button').click()
+    cy.get('.ol-form-field > .ol-btn').click()
     // check auth
     cy.get('.login-panel__enter > span').should('not.contain', 'Войти')
   }

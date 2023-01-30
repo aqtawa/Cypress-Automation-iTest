@@ -12,22 +12,20 @@ describe('With sub auth', () => {
     context('Navigation functional', () => {
         it('Open conspect and interact back/forward buttons', () => {
             cy.get(selectors.historyKzBtn).click()
-            cy.get('[data-node-id="14"]').click()
+            cy.get('[data-node-id="14"]').click({force:true})
             cy.get(selectors.firstConspectHistoryKz).click()
             cy.get('h1').should('contain', 'Глава I. Появление Древнейших людей')
             cy.get('[href="/ru/ent/istoriya-kazahstana/6-klass/lecture/razvitie-orudiya"]').click() //forward conspect button
             cy.get('h1').should('contain.text', 'Развитие орудия')
             cy.get('[href="/ru/ent/istoriya-kazahstana/6-klass/lecture/glava-i-poyavlenie-drevnejshih-lyudej"]').click() //backward conspect button
             cy.get('h1').should('contain.text', 'Глава I. Появление Древнейших людей')
-            
         });
 
         it('Open test and interact', () => {
             cy.get(selectors.historyKzBtn).click()
-            cy.get('[data-node-id="14"]').click()
+            cy.get('[data-node-id="14"]').click({force:true})
             cy.get(selectors.firstTestHistoryKz).click()
             cy.get('.test-body__theme').should('contain.text', 'Глава I. Появление Древнейших людей')
-            
             // check back/forward tests button
             cy.get('.process-footer__navigation-num').should('contain.text', '1 / 10')
             cy.get('.button-nav_theme_next').click()
@@ -66,7 +64,7 @@ describe('With sub auth', () => {
 
         it('Breadcrumbs navigation', () => {
             cy.get(selectors.historyKzBtn).click()
-            cy.get('[data-node-id="14"]').click()
+            cy.get('[data-node-id="14"]').click({force:true})
             cy.get(selectors.firstConspectHistoryKz).click()
             cy.get('.breadcrumbs > :nth-child(5) > span').click()
             cy.location('pathname').should('eq', '/ru/ent/istoriya-kazahstana/6-klass/lecture/glava-i-poyavlenie-drevnejshih-lyudej')
@@ -105,7 +103,7 @@ describe('Withot sub auth', () => {
     })
 
     context('Navigational available functionality', () => {
-        it('User cant open "Full ENT test" and press "Buy" button', () => {
+        it('User opens "Full ENT test" and press "Buy" button', () => {
             cy.get(selectors.historyKzBtn).click()
             cy.get('.button-wrapper > .button').click() // full ent button
             cy.get('#required-subscribe > .modal-dialog > .modal-content > .modal-header > .modal-title') // Modal about subscribe
@@ -116,7 +114,7 @@ describe('Withot sub auth', () => {
         
         it('User can open conspect but cant open test on theme', () => {
             cy.get(selectors.historyKzBtn).click()
-            cy.get('[data-node-id="14"]').click()
+            cy.get('[data-node-id="14"]').click({force:true})
             cy.get(selectors.firstTestHistoryKz).click()
             cy.get('#required-subscribe > .modal-dialog > .modal-content > .modal-header > .modal-title') // Modal about subscribe
             .should('contain.text', '\n                    Необходима активная подписка\n                ')

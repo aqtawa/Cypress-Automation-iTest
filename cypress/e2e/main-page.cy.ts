@@ -4,16 +4,7 @@ describe('Navigation menu', () =>{
         cy.testActiveCheck()
     })
     it('Authorization', () => {
-        // click on auth button
-        cy.get('.login-panel__enter > span').contains('Войти').click()
-        // enter the phone as login
-        cy.get('#phone').type('7756456689')
-        // enter password
-        cy.get('.password-block > .c-input').type('123456A')
-        // click login button
-        cy.get('#auth-form > .c-button').click()
-        // check auth
-        cy.get('.login-panel__enter > span').should('not.contain', 'Войти')
+        cy.auth(1)
     })
 
     it('Search button', () => {
