@@ -3,8 +3,31 @@ describe('Navigation menu', () =>{
         cy.visit('https://itest.dev-bmg.kz/ru')
         cy.testActiveCheck()
     })
-    it('Authorization', () => {
+    it.only('Authorization and profile navigation bar', () => {
         cy.auth(1)
+        cy.get('.login-panel__enter').click()
+        cy.get('.login-panel__user-menu > [href="/ru/profile/info"]').then((link) =>{
+            cy.request(link.prop('href'))
+            .its('status')
+            .should('eq', 200)
+        })
+        cy.get('.login-panel__user-menu > [href="/ru/profile/subscribe"]').click()
+        cy.location('pathname').should('contain', '/subscribe')
+        cy.go('back')
+        cy.get('.login-panel__enter').click()
+        cy.get('.login-panel__user-menu > [href="/ru/profile/balance"]').click()
+        cy.location('pathname').should('contain', '/balance')
+        cy.go('back')
+        cy.get('.login-panel__enter').click()
+        cy.get('.login-panel__user-menu > [href="/ru/profile/statistics"]').click()
+        cy.location('pathname').should('contain', '/statistic')
+        cy.go('back')
+        cy.get('.login-panel__enter').click()
+        cy.get('.login-panel__user-menu > [href="/ru/logout"]').click()
+        cy.get('.login-panel__enter').click()
+        cy.get('.login-panel__user-menu > [href="/ru/logout"]').click()
+        cy.get('.login-panel__enter > span').should('contain.text', 'Войти')
+
     })
 
     it('Search button', () => {
@@ -50,43 +73,43 @@ describe('Navigation menu', () =>{
         cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
     })
 
-    it('Check ENT navigation', () => {
+    it('Check ENT in navigation bar', () => {
         cy.get('.nav-menu').find('a').eq(0).click()
         cy.location('pathname').should('contain', '/ent')
         cy.get('.footer-top > .footer-inner').should('be.visible')
     })
 
-    it('Check FINAL EXAMINATION navigation', () => {
+    it('Check FINAL EXAMINATION in navigation bar', () => {
         cy.get('.nav-menu').find('a').eq(1).click()
         cy.location('pathname').should('contain', '/attestation')
         cy.get('.footer-top > .footer-inner').should('be.visible')
     })
     
-    it('Check VOUD navigation', () => {
+    it('Check VOUD in navigation bar', () => {
         cy.get('.nav-menu').find('a').eq(2).click()
         cy.location('pathname').should('contain', '/voud')
         cy.get('.footer-top > .footer-inner').should('be.visible')
     })
     
-    it('Check SUBSCRIBE navigation', () => {
+    it('Check SUBSCRIBE in navigation bar', () => {
         cy.get('.nav-menu').find('a').eq(3).click()
         cy.location('pathname').should('contain', '/subscribe')
         cy.get('.footer-top > .footer-inner').should('be.visible')
     })
     
-    it('Check NEWS navigation', () => {
+    it('Check NEWS in navigation bar', () => {
         cy.get('.nav-menu').find('a').eq(4).click()
         cy.location('pathname').should('contain', '/news')
         cy.get('.footer-top > .footer-inner').should('be.visible')
     })
 
-    it('Check CONTACTS navigation', () => {
+    it('Check CONTACTS in navigation bar', () => {
         cy.get('.nav-menu').find('a').eq(5).click()
         cy.location('pathname').should('contain', '/contact')
         cy.get('.footer-top > .footer-inner').should('be.visible')
     })
 
-    it('Click main iTest emblem button', () => {
+    it('Click main iTest emblem button in navigation bar', () => {
         cy.get('.__standart').click()
         cy.location('hostname').should('eq', 'itest.dev-bmg.kz')
         cy.get('.footer-top > .footer-inner').should('be.visible')
@@ -119,168 +142,15 @@ describe('Main menu', () => {
         cy.visit('https://itest.dev-bmg.kz/ru')
         // cy.reload()
     })
-    it('ENT section', () => {
-        // All section block cheking
-        //block 1
-        cy.get(':nth-child(7) > .title-inner > .title > span').contains('ЕНТ')
-        cy.get('.subject-block__bg').eq(0).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 2
-        cy.get('.subject-block__bg').eq(1).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 3
-        cy.get('.subject-block__bg').eq(2).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 4
-        cy.get('.subject-block__bg').eq(3).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 5
-        cy.get('.subject-block__bg').eq(4).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 6
-        cy.get('.subject-block__bg').eq(5).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 7
-        cy.get('.subject-block__bg').eq(6).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 8
-        cy.get('.subject-block__bg').eq(7).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 9
-        cy.get('.subject-block__bg').eq(8).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 10
-        cy.get('.subject-block__bg').eq(9).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 11
-        cy.get('.subject-block__bg').eq(10).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 12
-        cy.get('.subject-block__bg').eq(11).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 13
-        cy.get('.subject-block__bg').eq(12).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 14
-        cy.get('.subject-block__bg').eq(13).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 15
-        cy.get('.subject-block__bg').eq(14).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 16
-        cy.get('.subject-block__bg').eq(15).click({force:true})
-        cy.location('pathname').should('contain', '/ru/ent/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
+
+    it('All ENT block-subjects checks', () => {
+        cy.EntBlocksCheck()
     });
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    it('FINAL ATTESTATION section', () => {
-        //All section block cheking
-        //block 1
-        cy.get('.subject-block__bg').eq(16).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 2
-        cy.get('.subject-block__bg').eq(17).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 3
-        cy.get('.subject-block__bg').eq(18).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 4
-        cy.get('.subject-block__bg').eq(19).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 5
-        cy.get('.subject-block__bg').eq(20).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 6
-        cy.get('.subject-block__bg').eq(21).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 7
-        cy.get('.subject-block__bg').eq(22).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 8
-        cy.get('.subject-block__bg').eq(23).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 9
-        cy.get('.subject-block__bg').eq(24).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 10
-        cy.get('.subject-block__bg').eq(25).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 11
-        cy.get('.subject-block__bg').eq(26).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 12
-        cy.get('.subject-block__bg').eq(27).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 13
-        cy.get('.subject-block__bg').eq(28).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 14
-        cy.get('.subject-block__bg').eq(29).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
-        cy.go("back")
-        //block 15
-        cy.get('.subject-block__bg').eq(30).click({force:true})
-        cy.location('pathname').should('contain', '/ru/attestation/')
-        cy.get('.footer-top > .footer-inner').should('be.visible')
+
+    it('All Attestations block-subjects checks', () => {
+        cy.AttestationBlocksCheck()
     });
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     it('VOUD section', () => {
         //1 block
         cy.get('.subject-block__bg').eq(31).click({force:true})
@@ -305,6 +175,9 @@ describe('Main menu', () => {
             cy.request(link.prop('href'))
             .its('status')
             .should('eq', 200)
+            cy.api(link.prop('href'))
+            .its('allRequestResponses').its('0').its('Request URL')
+            .should('contain', 'http://bilimland.kz/')
         })
         // imektep block
         cy.get('.imektep > .study-additional-block__wrapper').should('be.visible')
@@ -312,6 +185,9 @@ describe('Main menu', () => {
             cy.request(link.prop('href'))
             .its('status')
             .should('eq', 200)
+            cy.api(link.prop('href'))
+            .its('allRequestResponses').its('0').its('Request URL')
+            .should('contain', 'http://imektep.kz/')
         })
         // twig-bilim block
         cy.get('.twigbilim > .study-additional-block__wrapper').should('be.visible')
@@ -319,6 +195,9 @@ describe('Main menu', () => {
             cy.request(link.prop('href'))
             .its('status')
             .should('eq', 200)
+            cy.api(link.prop('href'))
+            .its('allRequestResponses').its('0').its('Request URL')
+            .should('contain', 'https://twig-bilim.kz/')
         })
     })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

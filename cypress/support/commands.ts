@@ -14,6 +14,8 @@ declare global {
       getByData(value: any): Chainable<JQuery<HTMLElement>>
       auth(value: any): Chainable<JQuery<HTMLElement>>
       testActiveCheck(): Chainable<JQuery<HTMLElement>>
+      EntBlocksCheck(): Chainable<JQuery<HTMLElement>>
+      AttestationBlocksCheck(): Chainable<JQuery<HTMLElement>>
     }
   }
 }
@@ -22,7 +24,7 @@ declare global {
 Cypress.Commands.add("getByData", (selector) => {
   return cy.get(`[data-test=${selector}]`)
 })
-// auth(1)-subscription on | auth(2)-without subscription
+// cy.auth(1) -subscription on, cy.auth(2) -without subscription
 Cypress.Commands.add("auth", (i) => {
   // with subscription
   if (i === 1) {
@@ -57,7 +59,26 @@ Cypress.Commands.add('testActiveCheck', () => {
     if ($body.find(".test-container").length > 0) {   
       cy.get('.test-container__end').dblclick({force:true})
       cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
-      cy.wait(3000)
+      cy.wait(2500)
     }
   })
+})
+
+Cypress.Commands.add('EntBlocksCheck', () => {
+  for (let i = 0; i < 15; i++) {
+    cy.get(':nth-child(7) > .title-inner > .title > span').contains('ЕНТ')
+        cy.get('.subject-block__bg').eq(i).click({force:true})
+        cy.location('pathname').should('contain', '/ru/ent/')
+        cy.get('.footer-top > .footer-inner').should('be.visible')
+        cy.go("back")
+  }
+})
+
+Cypress.Commands.add('AttestationBlocksCheck', () => {
+  for (let i = 16; i < 30; i++) {
+    cy.get('.subject-block__bg').eq(i).click({force:true})
+    cy.location('pathname').should('contain', '/ru/attestation/')
+    cy.get('.footer-top > .footer-inner').should('be.visible')
+    cy.go("back")
+  }
 })

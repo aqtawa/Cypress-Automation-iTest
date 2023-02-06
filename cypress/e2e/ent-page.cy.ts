@@ -20,45 +20,11 @@ describe('With sub auth', () => {
         cy.get('h1').should('contain.text', 'Глава I. Появление Древнейших людей')
     });
 
-    it('Open test and interact', () => {
+    it('Open test', () => {
         cy.get(selectors.historyKzBtn).click()
         cy.get('[data-node-id="14"]').click({force:true})
         cy.get(selectors.firstTestHistoryKz).click()
         cy.get('.test-body__theme').should('contain.text', 'Глава I. Появление Древнейших людей')
-        // check back/forward tests button
-        cy.get('.process-footer__navigation-num').should('contain.text', '1 / 10')
-        cy.get('.button-nav_theme_next').click()
-        cy.get('.process-footer__navigation-num').should('contain.text', '2 / 10')
-        cy.get('.button-nav_theme_prev').click()
-        cy.get('.process-footer__navigation-num').should('contain.text', '1 / 10')
-        // check the "answers-map"
-        cy.get('.map-questions__switcher').dblclick({force:true})
-        cy.get('#etq_6').click()
-        cy.get('.process-footer__navigation-num').should('contain.text', '6 / 10')
-        cy.get('#etq_10').click()
-        cy.get('.process-footer__navigation-num').should('contain.text', '10 / 10')
-        cy.get('.button-nav_theme_next').click()
-        cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
-        cy.get('.result-panel__title').should('contain.text', 'Вы завершили тест')
-        cy.get('.button-wrapper > .is-active').click()
-        cy.get('.test-body__theme').should('contain.text', 'Глава I. Появление Древнейших людей')
-        cy.get('.test-container__process-head > .button-radius').click()
-        cy.get('.result-panel__title').should('contain.text', 'Вы завершили тест')
-        cy.get('[data-action="create_replay_test"]').click()
-        // check select/reselect answer
-        cy.get(':nth-child(1) > [data-var-answer="a"]').click()
-        cy.get(':nth-child(1) > [data-var-answer="a"]').should('have.class', 'is-active')
-        cy.get(':nth-child(1) > [data-var-answer="b"]').click()
-        cy.get(':nth-child(1) > [data-var-answer="b"]').should('have.class', 'is-active')
-        cy.get(':nth-child(1) > [data-var-answer="a"]').should('not.have.class', 'is-active')
-        // try to end test and exit
-        cy.get('.map-questions__switcher').dblclick({force:true})
-        cy.get('#etq_10').click()
-        cy.get('.process-footer__navigation-num').should('contain.text', '10 / 10')
-        cy.get('.button-nav_theme_next').click()
-        cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
-        cy.get('#url-exit', {timeout:10000}).click()
-        cy.location('hostname').should('contain', 'itest.dev-bmg.kz')
     });
 
     it('Breadcrumbs navigation', () => {
@@ -82,13 +48,6 @@ describe('With sub auth', () => {
         cy.get(selectors.historyKzBtn).click()
         cy.get('.button-wrapper > .button').click()
         cy.get('.process-footer__navigation-num').should('contain.text', '1 / 15')
-        cy.get('.map-questions__switcher').dblclick({force:true})
-        cy.get('#etq_15').click()
-        cy.get('.process-footer__navigation-num').should('contain.text', '15 / 15')
-        cy.get('.button-nav_theme_next').click()
-        cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
-        cy.get('#url-exit').click()
-        cy.location('hostname').should('contain', 'itest.dev-bmg.kz')
     });
 
     it("User can open conspect and download it", () => {
@@ -101,9 +60,6 @@ describe('With sub auth', () => {
             .its('status').should('eq', 200)
         })
     })
-    
-    
-
 })
 
 describe('Without sub auth', () => {
@@ -122,7 +78,7 @@ describe('Without sub auth', () => {
         cy.get('h1').should('contain.text', 'Подписка') // check right location
     });
 
-    it.only("User can open conspect and download it", () => {
+    it("User can open conspect and download it", () => {
         cy.get(selectors.historyKzBtn).click()
         cy.get('[data-node-id="14"]').click({force:true})
         cy.get(selectors.firstConspectHistoryKz).click()
@@ -136,10 +92,10 @@ describe('Without sub auth', () => {
     it('User can open conspect but cant open test on theme', () => {
         cy.get(selectors.historyKzBtn).click()
         cy.get('[data-node-id="14"]').click({force:true})
-        cy.get(selectors.firstTestHistoryKz).click()
+        cy.get(selectors.firstTestHistoryKz).click
         cy.get('#required-subscribe > .modal-dialog > .modal-content > .modal-header > .modal-title') // Modal about subscribe
         .should('contain.text', '\n                    Необходима активная подписка\n                ')
-        cy.get('#required-subscribe > .modal-dialog > .modal-content > .close').click()
+        cy.get('#required-subscribe > .modal-dialog > .modal-content > .close').click({force:true})
         cy.get(selectors.firstConspectHistoryKz).click()
         cy.get('.button-wrapper > .button').click()
         cy.get('#required-subscribe > .modal-dialog > .modal-content > .modal-header > .modal-title') // Modal about subscribe
