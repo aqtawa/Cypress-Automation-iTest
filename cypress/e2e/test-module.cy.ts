@@ -1,3 +1,5 @@
+import { it } from "mocha"
+
 export{}
 
 describe('Functional interaction with test module', () => {
@@ -51,4 +53,35 @@ describe('Functional interaction with test module', () => {
         cy.location('hostname').should('contain', 'itest.dev-bmg.kz')
     });
 
+    it ('Hide text button', () => {
+        cy.get('[data-number="1"] > .study-block__image > .study-block__image-wrapper').click()
+        cy.get('#test-longtext > :nth-child(2) > .button').should('contain.text', 'Скрыть текст')
+        cy.get('#test-longtext > :nth-child(2) > .button').click()
+        cy.get('#test-longtext > :nth-child(2) > .button').should('not.contain.text', 'Скрыть текст')
+    });
+    
+    it('Test results buttons functions', () => {
+        cy.get('[data-number="4"] > .study-block__image > .study-block__image-wrapper').click()
+        cy.get('.map-questions__switcher').dblclick({force:true})
+        cy.get('#etq_30').click()
+        cy.get('.button-nav_theme_next').click()
+        cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
+        cy.get('.result-panel__title').should('contain.text', 'Вы завершили тест!')
+        cy.get('#offline-html-percent > span').should('contain.text', '0% (0/130)')
+        cy.get('.button-wrapper > .is-active').click()
+        cy.get('.test-container__process').should('be.visible')
+        cy.get('.test-container__process-head > .button-radius').click()
+        cy.get('.result-panel__title').should('contain.text', 'Вы завершили тест!')
+        cy.get('[data-action="create_replay_test"]').click()
+        cy.get('.test-container__study-subject > .__status').should('contain.text', 'Активен')
+        cy.get('[data-number="4"] > .study-block__image > .study-block__image-wrapper').click()
+        cy.get('.map-questions__switcher').dblclick({force:true})
+        cy.get('#etq_30').click()
+        cy.get('.button-nav_theme_next').click()
+        cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
+        cy.get('.result-panel__title').should('contain.text', 'Вы завершили тест!')
+        cy.get('#url-exit').click()
+        cy.location('hostname').should('contain', 'itest.dev-bmg.kz')
+    });
 })
+
