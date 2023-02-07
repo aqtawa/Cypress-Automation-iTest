@@ -39,7 +39,7 @@ describe('Functional interaction with test module', () => {
     })
 
     it('Select subject questions inside test', () => {
-        cy.get('.process-footer__navigation-num').should('contain.text', '15 / 15')
+        cy.get('.process-footer__navigation-num').should('contain.text', '1 / 15')
         cy.get('[data-number="4"] > .study-block__image > .study-block__image-wrapper').click()
         cy.get('.process-footer__navigation-num').should('contain.text', '1 / 30')
         cy.get('.map-questions__switcher').dblclick({force:true})
