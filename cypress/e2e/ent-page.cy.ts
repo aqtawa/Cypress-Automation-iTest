@@ -105,7 +105,16 @@ describe('Without sub auth', () => {
 })
 
 describe('Without auth', () => {
-
+    beforeEach(() => {
+        cy.visit('https://itest.dev-bmg.kz/ru/ent')
+    })
+    it.only("User can open conspect but cant download it", () => {
+        cy.get(selectors.historyKzBtn).click()
+        cy.get('[data-node-id="14"]').click({force:true})
+        cy.get(selectors.firstConspectHistoryKz).click()
+        cy.get('h1').should('contain', 'Глава I. Появление Древнейших людей')
+        cy.get('.button-func').should('not.exist')
+    })
 })
 
 
