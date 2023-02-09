@@ -127,14 +127,13 @@ describe('Banners', () =>{
         cy.get('.arr-prev').click()
         cy.get('.bilim-banner__container').should('be.visible')
     })
-    // becouse banner disabled on dev
-    // it('Banner links', () => {
-    //     cy.get('.bilim-banner__button > a').then((link) => {
-    //         cy.request(link.prop('href'))
-    //         .its('status')
-    //         .should('eq', '200')
-    //     })
-    // })
+    it('Banner links', () => {
+        cy.get('.bilim-banner__button > a').then((link) => {
+            cy.request(link.prop('href'))
+            .its('status')
+            .should('eq', 200)
+        })
+    })
 })
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 describe('Main menu', () => {

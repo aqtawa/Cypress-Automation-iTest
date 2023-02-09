@@ -1,5 +1,4 @@
 export default{
-  projectId: 'IhRG9B', // cypress sorry
   e2e: {
     setupNodeEvents(on, config) {
       // implement node event listeners here
