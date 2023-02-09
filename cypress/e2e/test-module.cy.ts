@@ -1,4 +1,3 @@
-import { it } from "mocha"
 
 export{}
 
@@ -33,27 +32,27 @@ describe('Functional interaction with test module', () => {
     })
 
     it('Check select/reselect answer', () => {
-        cy.get(':nth-child(1) > [data-var-answer="a"]').click()
-        cy.get(':nth-child(1) > [data-var-answer="a"]').should('have.class', 'is-active')
-        cy.get(':nth-child(1) > [data-var-answer="b"]').click()
-        cy.get(':nth-child(1) > [data-var-answer="b"]').should('have.class', 'is-active')
-        cy.get(':nth-child(1) > [data-var-answer="a"]').should('not.have.class', 'is-active')
+        cy.get('.type-4 > [data-var-answer="a"]').click()
+        cy.get('.type-4 > [data-var-answer="a"]').should('have.class', 'is-active')
+        cy.get('.type-4 > [data-var-answer="b"]').click()
+        cy.get('.type-4 > [data-var-answer="b"]').should('have.class', 'is-active')
+        cy.get('.type-4 > [data-var-answer="a"]').should('not.have.class', 'is-active')
     })
 
     it('Select subject questions inside test', () => {
         cy.get('.process-footer__navigation-num').should('contain.text', '1 / 15')
         cy.get('[data-number="4"] > .study-block__image > .study-block__image-wrapper').click()
-        cy.get('.process-footer__navigation-num').should('contain.text', '1 / 30')
+        cy.get('.process-footer__navigation-num').should('contain.text', '1 / 35')
         cy.get('.map-questions__switcher').dblclick({force:true})
-        cy.get('#etq_30').click()
-        cy.get('.process-footer__navigation-num').should('contain.text', '30 / 30')
+        cy.get('#etq_35').click()
+        cy.get('.process-footer__navigation-num').should('contain.text', '35 / 35')
         cy.get('.button-nav_theme_next').click()
         cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
         cy.get('#url-exit', {timeout:10000}).click()
         cy.location('hostname').should('contain', 'itest.dev-bmg.kz')
     });
 
-    it ('Hide text button', () => {
+    it('Hide text button', () => {
         cy.get('[data-number="1"] > .study-block__image > .study-block__image-wrapper').click()
         cy.get('#test-longtext > :nth-child(2) > .button').should('contain.text', 'Скрыть текст')
         cy.get('#test-longtext > :nth-child(2) > .button').click()
@@ -63,7 +62,7 @@ describe('Functional interaction with test module', () => {
     it('Test results buttons functions', () => {
         cy.get('[data-number="4"] > .study-block__image > .study-block__image-wrapper').click()
         cy.get('.map-questions__switcher').dblclick({force:true})
-        cy.get('#etq_30').click()
+        cy.get('#etq_35').click()
         cy.get('.button-nav_theme_next').click()
         cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
         cy.get('.result-panel__title').should('contain.text', 'Вы завершили тест!')
@@ -76,7 +75,7 @@ describe('Functional interaction with test module', () => {
         cy.get('.test-container__study-subject > .__status').should('contain.text', 'Активен')
         cy.get('[data-number="4"] > .study-block__image > .study-block__image-wrapper').click()
         cy.get('.map-questions__switcher').dblclick({force:true})
-        cy.get('#etq_30').click()
+        cy.get('#etq_35').click()
         cy.get('.button-nav_theme_next').click()
         cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
         cy.get('.result-panel__title').should('contain.text', 'Вы завершили тест!')

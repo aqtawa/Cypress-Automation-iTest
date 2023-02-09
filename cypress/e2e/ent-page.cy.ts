@@ -47,7 +47,7 @@ describe('With sub auth', () => {
     it('"Full test on subject" button', () => {
         cy.get(selectors.historyKzBtn).click()
         cy.get('.button-wrapper > .button').click()
-        cy.get('.process-footer__navigation-num').should('contain.text', '1 / 15')
+        cy.get('.process-footer__navigation-num').should('contain.text', '1 / 10')
     });
 
     it("User can open conspect and download it", () => {
@@ -103,5 +103,11 @@ describe('Without sub auth', () => {
     });
 
 })
+
+describe('Without auth', () => {
+
+})
+
+
 
 export{}

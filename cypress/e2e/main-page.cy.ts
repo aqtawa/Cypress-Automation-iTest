@@ -3,7 +3,7 @@ describe('Navigation menu', () =>{
         cy.visit('https://itest.dev-bmg.kz/ru')
         cy.testActiveCheck()
     })
-    it.only('Authorization and profile navigation bar', () => {
+    it('Authorization and profile navigation bar', () => {
         cy.auth(1)
         cy.get('.login-panel__enter').click()
         cy.get('.login-panel__user-menu > [href="/ru/profile/info"]').then((link) =>{

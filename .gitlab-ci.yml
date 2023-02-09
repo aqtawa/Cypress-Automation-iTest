@@ -31,4 +31,4 @@ test:
     # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
     # https://docs.cypress.io/guides/guides/parallelization
     - npm ci --cache .npm --prefer-offline
-    - npx currents run --record --browser chrome --key 90orzXrMpl1vA2AP
+    - npx cypress run
