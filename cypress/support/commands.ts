@@ -59,6 +59,7 @@ Cypress.Commands.add('testActiveCheck', () => {
     if ($body.find(".test-container").length > 0) {   
       cy.get('.test-container__end').dblclick({force:true})
       cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
+      cy.wait(2000)
     }
   })
 })
