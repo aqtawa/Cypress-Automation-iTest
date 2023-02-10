@@ -57,7 +57,6 @@ describe('Navigation menu', () =>{
         cy.get('[data-node-alias="chemistry"] > .study-block__title').click()
         cy.get('#full-ent-test > .modal-dialog > .modal-content > .modal-footer > .button').click()
         cy.get('#required-subscribe > .modal-dialog > .modal-content').should('be.visible')
-        cy.wait(3000)
     })
 
     it('PASS FULL ENT button with subscribe', () => {

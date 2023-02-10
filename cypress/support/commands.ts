@@ -36,6 +36,7 @@ Cypress.Commands.add("auth", (i) => {
     cy.get('#password').type('123456A')
     // click login button
     cy.get('.ol-form-field > .ol-btn').click()
+    cy.testActiveCheck()
     // check auth
     cy.get('.login-panel__enter > span').should('not.contain', 'Войти')
   }

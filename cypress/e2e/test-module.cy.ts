@@ -6,7 +6,6 @@ describe('Functional interaction with test module', () => {
     beforeEach(() => {
         cy.visit('https://itest.dev-bmg.kz/ru')
         cy.auth(1)
-        cy.testActiveCheck()
         cy.get('.header-inner > .button').click()
         cy.get('#full-ent-test > .modal-dialog > .modal-content').should('be.visible')
         cy.get('[data-node-alias="biology"] > .study-block__title').click()
@@ -66,7 +65,7 @@ describe('Functional interaction with test module', () => {
         cy.get('.button-nav_theme_next').click()
         cy.get('#test-end > .modal-dialog > .modal-content > .modal-footer > .button_theme_orange').click()
         cy.get('.result-panel__title').should('contain.text', 'Вы завершили тест!')
-        cy.get('#offline-html-percent > span').should('contain.text', '0% (0/130)')
+        cy.get('#offline-html-percent > span').should('contain.text', '0% (0/140)')
         cy.get('.button-wrapper > .is-active').click()
         cy.get('.test-container__process').should('be.visible')
         cy.get('.test-container__process-head > .button-radius').click()
