@@ -107,6 +107,7 @@ describe('Without sub auth', () => {
 describe('Without auth', () => {
     beforeEach(() => {
         cy.visit('https://itest.dev-bmg.kz/ru/ent')
+        cy.testActiveCheck
     })
     it("User can open conspect but cant download it", () => {
         cy.get(selectors.historyKzBtn).click()
