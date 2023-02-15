@@ -4,7 +4,6 @@ export{}
 describe('Functional interaction with test module', () => {
 
     beforeEach(() => {
-        cy.visit('https://itest.dev-bmg.kz/ru')
         cy.auth(1)
         cy.get('.header-inner > .button').click()
         cy.get('#full-ent-test > .modal-dialog > .modal-content').should('be.visible')

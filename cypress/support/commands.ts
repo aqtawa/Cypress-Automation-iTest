@@ -26,10 +26,11 @@ Cypress.Commands.add("getByData", (selector) => {
 })
 // cy.auth(1) -subscription on, cy.auth(2) -without subscription
 Cypress.Commands.add("auth", (i) => {
+  cy.visit('/')
   // with subscription
   if (i === 1) {
     // click on auth button
-    cy.get('.login-panel__enter > i').click()
+    cy.get('.login-panel__enter > i').click({force:true})
     // enter the phone as login
     cy.get('#login').type('7756456689')
     // enter password
