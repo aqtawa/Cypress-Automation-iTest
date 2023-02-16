@@ -357,8 +357,10 @@ describe('No auth', () => {
                 cy.location('hostname').should('eq', 'itest.dev-bmg.kz')
                 cy.get('.footer-top > .footer-inner').should('be.visible')
             })
-            it('Full ENT button', () => {
+            it.only('Full ENT button', () => {
                 cy.get('.header-bottom__right > .button').click()
+                cy.get('[data-node-alias="biology"] > .study-block__image > .study-block__image-wrapper').click()
+                cy.get('[data-node-alias="chemistry"] > .study-block__image > .study-block__image-wrapper').click()
                 cy.get('#full-ent-test > .modal-dialog > .modal-content > .modal-footer > .button').click()
                 cy.get('#required-subscribe > .modal-dialog > .modal-content > .modal-header').should('be.visible')
 
