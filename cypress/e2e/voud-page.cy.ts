@@ -1,5 +1,3 @@
-export{}
-
 describe('With subscription', () => {
     beforeEach(() => {
         cy.auth(1)
@@ -21,9 +19,7 @@ describe('With subscription', () => {
             cy.get('[href="/ru/voud-4"] > .subject-block__image > .subject-block__icon').click()
             cy.get('.study-wrapper__header > .button').click()
         });
-
     });
-
 });
 
 describe('Without subscription', () => {
@@ -40,16 +36,14 @@ describe('Without subscription', () => {
     });
     context('Mobile version', () => {
         beforeEach(() => {
-            cy.viewport('iphone-5')
+            cy.viewport('iphone-6')
         });
 
         it('"Pass full VOUD" button', () => {
             cy.get('[href="/ru/voud-4"] > .subject-block__image > .subject-block__icon').click()
             cy.get('.study-wrapper__header > .button').click()
         });
-        
     });
-
 });
 
 describe('Without authentication', () => {
@@ -65,14 +59,14 @@ describe('Without authentication', () => {
     });
     context('Mobile version', () => {
         beforeEach(() => {
-            cy.viewport('iphone-5')
+            cy.viewport('iphone-6')
         });
 
         it('"Pass full VOUD" button', () => {
             cy.get('[href="/ru/voud-4"] > .subject-block__image > .subject-block__icon').click()
             cy.get('.study-wrapper__header > .button').click()
-        });
-        
+        }); 
     });
-
 });
+
+export{}
