@@ -14,6 +14,9 @@ export default{
     viewportWidth: 1000,
     viewportHeight: 660,
     waitForAnimations: true,
-    scrollBehavior: 'center'
+    scrollBehavior: 'center',
+    env: {
+      snapshotOnly: true
+    }
   },
 };

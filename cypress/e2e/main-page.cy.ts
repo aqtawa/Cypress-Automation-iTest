@@ -370,9 +370,6 @@ describe('No auth', () => {
                 cy.location('pathname').should('contain', '/login')
             });
         });
-        
-        
-        
         it('Banner slide selection check', () => {
             cy.get('.bilim-banner__container').should('be.visible')
             cy.get('.arr-next').click()
